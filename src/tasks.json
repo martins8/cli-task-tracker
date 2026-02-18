@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "description": "mudando descrição teste1",
+    "status": "done",
+    "createdAt": "2026-02-18T11:50:51.904Z",
+    "updatedAt": "2026-02-18T12:36:11.410Z"
+  },
+  {
+    "id": 3,
+    "description": "teste3",
+    "status": "todo",
+    "createdAt": "2026-02-18T12:14:35.113Z",
+    "updatedAt": "2026-02-18T12:14:35.113Z"
+  },
+  {
+    "id": 4,
+    "description": "teste3",
+    "status": "todo",
+    "createdAt": "2026-02-18T12:20:29.295Z",
+    "updatedAt": "2026-02-18T12:20:29.295Z"
+  }
+]
