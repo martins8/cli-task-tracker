@@ -21,11 +21,13 @@ export default class Task implements TaskProps {
     this.updatedAt = updatedAt || new Date();
   }
 
+  // update task description and updatedAt timestamp
   public updateDescription(description: string) {
     this.description = description;
     this.updatedAt = new Date();
   }
 
+  // update task status and updatedAt timestamp
   public markStatus(status: TaskStatus) {
     this.status = status;
     this.updatedAt = new Date();
