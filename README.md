@@ -2,7 +2,7 @@ this is project to learn and practice
 
 ## PROJECT URL
 
-[project url](https://github.com/martins8/cli-task-tracker)
+[project url](https://roadmap.sh/projects/task-tracker)
 
 ## Usage
 
