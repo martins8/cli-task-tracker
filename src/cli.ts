@@ -1,4 +1,4 @@
-import Task from "./task";
+import Task, { TaskStatus } from "./task";
 import { loadTasks, saveTasks } from "./storage";
 
 export interface Options {
@@ -8,7 +8,7 @@ export interface Options {
   markProgress: (id: number) => string;
   markDone: (id: number) => string;
   list: () => Task[];
-  listByStatus: (status: string) => Task[];
+  listByStatus: (status: TaskStatus) => Task[];
 }
 
 export default class CLI implements Options {
@@ -43,10 +43,14 @@ export default class CLI implements Options {
       saveTasks(this.tasks);
       return `Task updated successfully (ID: ${id})`;
     }
-    return `Task not found`;
+    return `Task not found (ID: ${id})`;
   }
 
   public delete(id: number): string {
+    const task = this.tasks.find((task) => task.id === id);
+    if (!task) {
+      return `Task not found (ID: ${id})`;
+    }
     this.tasks = this.tasks.filter((task) => task.id !== id);
     saveTasks(this.tasks);
     return `Task deleted successfully (ID: ${id})`;
@@ -56,7 +60,7 @@ export default class CLI implements Options {
     return this.tasks;
   }
 
-  public listByStatus(status: string): Task[] {
+  public listByStatus(status: TaskStatus): Task[] {
     return this.tasks.filter((task) => task.status === status);
   }
 
@@ -67,7 +71,7 @@ export default class CLI implements Options {
       saveTasks(this.tasks);
       return `Task marked as done (ID: ${id})`;
     }
-    return `Task not found`;
+    return `Task not found (ID: ${id})`;
   }
 
   public markProgress(id: number): string {
@@ -77,6 +81,6 @@ export default class CLI implements Options {
       saveTasks(this.tasks);
       return `Task marked as in progress (ID: ${id})`;
     }
-    return `Task not found`;
+    return `Task not found (ID: ${id})`;
   }
 }

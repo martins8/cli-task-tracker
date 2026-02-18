@@ -1,10 +1,10 @@
 import cli from "./src/cli";
+import { TaskStatus } from "./src/task";
 const CLI = new cli();
 const command = process.argv[2];
 const args = process.argv.slice(3);
 switch (command) {
   case "add":
-    console.log(args);
     const addResult = CLI.add(args.join(" "));
     console.log(addResult);
     break;
@@ -18,7 +18,13 @@ switch (command) {
     break;
   case "list":
     if (args.length > 0) {
-      const status = args[0];
+      const isTaskStatus = (value: string): value is TaskStatus =>
+        value === "todo" || value === "in-progress" || value === "done";
+      if (!isTaskStatus(args[0])) {
+        console.log(`Invalid status: ${args[0]}`);
+        process.exit(1);
+      }
+      const status: TaskStatus = args[0];
       const tasksByStatus = CLI.listByStatus(status);
       console.log(`Listing tasks with status "${status}":`);
       console.log(tasksByStatus);
