@@ -1,5 +1,8 @@
 this is project to learn and practice
-https://github.com/martins8/cli-task-tracker
+
+## PROJECT URL
+
+[project url](https://github.com/martins8/cli-task-tracker)
 
 ## Usage
 
