@@ -15,7 +15,7 @@
   "type": "commonjs",
   "main": "index.ts",
   "scripts": {
-    "dev": "tsx index.ts",
+    "dev": "npx tsx index.ts",
     "test": "jest"
   },
   "devDependencies": {
