@@ -1,5 +1,5 @@
-import cli from "./src/cli";
-import { TaskStatus } from "./src/task";
+import cli from "./src/cli.js";
+import type { TaskStatus } from "./src/task.js";
 const CLI = new cli();
 const command = process.argv[2];
 const args = process.argv.slice(3);
@@ -11,11 +11,19 @@ switch (command) {
     break;
 
   case "update":
+    if (!args[0]) {
+      console.log("Error: Task ID is required for update command");
+      process.exit(1);
+    }
     const updateResult = CLI.update(parseInt(args[0]), args.slice(1).join(" "));
     console.log(updateResult);
     break;
 
   case "delete":
+    if (!args[0]) {
+      console.log("Error: Task ID is required for delete command");
+      process.exit(1);
+    }
     const deleteResult = CLI.delete(parseInt(args[0]));
     console.log(deleteResult);
     break;
@@ -25,7 +33,7 @@ switch (command) {
       //check if the provided status is valid
       const isTaskStatus = (value: string): value is TaskStatus =>
         value === "todo" || value === "in-progress" || value === "done";
-      if (!isTaskStatus(args[0])) {
+      if (!args[0] || !isTaskStatus(args[0])) {
         console.log(`Invalid status: ${args[0]}`);
         process.exit(1);
       }
@@ -44,11 +52,19 @@ switch (command) {
     break;
 
   case "mark-in-progress":
+    if (!args[0]) {
+      console.log("Error: Task ID is required for mark-in-progress command");
+      process.exit(1);
+    }
     const markInProgressResult = CLI.markProgress(parseInt(args[0]));
     console.log(markInProgressResult);
     break;
 
   case "mark-done":
+    if (!args[0]) {
+      console.log("Error: Task ID is required for mark-done command");
+      process.exit(1);
+    }
     const markDoneResult = CLI.markDone(parseInt(args[0]));
     console.log(markDoneResult);
     break;

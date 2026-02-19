@@ -1,5 +1,6 @@
-import Task, { TaskStatus } from "./task";
-import { loadTasks, saveTasks } from "./storage";
+import Task from "./task.js";
+import type { TaskStatus } from "./task.js";
+import { loadTasks, saveTasks } from "./storage.js";
 
 export interface Options {
   add: (description: string) => string;
